@@ -12,3 +12,5 @@
 </p>
 
 For this challenge:
+
+1. Try out more "design system"-like Tailwind setup with components

@@ -6,18 +6,52 @@
   html {
     @apply scroll-behaviour-smooth;
   }
+
+  body {
+    @apply text-body text-white bg-gray-dark;
+  }
 }
 
 @layer utilities {
   .scroll-behaviour-smooth {
     scroll-behavior: smooth;
   }
+}
 
-  .grid-area-container {
-    grid-template-areas: 'single';
+@layer components {
+  .body {
+    @apply text-body-mobile md:text-body;
   }
 
-  .grid-area {
-    grid-area: single;
+  .h1 {
+    @apply text-h1-mobile md:text-h1-tablet xl:text-h1 font-bold tracking-tight;
+  }
+
+  .h2 {
+    @apply text-h2-mobile md:text-h2-tablet xl:text-h2 font-bold;
+  }
+
+  .h3 {
+    @apply text-h3-mobile md:text-h3-tablet xl:text-h3 font-bold uppercase tracking-wide;
+  }
+
+  .h4 {
+    @apply text-h4-mobile md:text-h4-tablet xl:text-h4 uppercase tracking-wide;
+  }
+
+  .h5 {
+    @apply text-h5-mobile md:text-h5 font-bold;
+  }
+
+  .h6 {
+    @apply text-h6-mobile md:text-h6-tablet xl:text-h6 uppercase tracking-wide;
+  }
+
+  .suffix {
+    @apply text-suffix-mobile md:text-suffix-tablet xl:text-suffix font-light uppercase;
+  }
+
+  .button {
+    @apply text-button-mobile md:text-button font-bold uppercase tracking-wider;
   }
 }
