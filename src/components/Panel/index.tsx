@@ -1,23 +1,21 @@
 import React from 'react'
+import { TimeData } from '@/pages/index'
 
 interface PanelProps extends React.HTMLProps<HTMLDivElement> {
-  timezone: string
-  weekDay: number
-  weekNumber: number
-  yearDay: number
+  time?: TimeData
 }
 
-function Panel({ timezone, weekDay, weekNumber, yearDay, className = '', ...props }: PanelProps) {
+function Panel({ time, className = '', ...props }: PanelProps) {
   return (
     <section className={`${className}`} {...props}>
       <div className="h6">Current timezone</div>
-      <div className="h2">{timezone}</div>
+      <div className="h2">{time ? time.timezone : '–'}</div>
       <div className="h6">Day of the year</div>
-      <div className="h2">{yearDay}</div>
+      <div className="h2">{time ? time.day_of_year : '–'}</div>
       <div className="h6">Day of the week</div>
-      <div className="h2">{weekDay}</div>
+      <div className="h2">{time ? time.day_of_week : '–'}</div>
       <div className="h6">Week number</div>
-      <div className="h2">{weekNumber}</div>
+      <div className="h2">{time ? time.week_number : '–'}</div>
     </section>
   )
 }
