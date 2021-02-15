@@ -5,11 +5,6 @@ import Time from '@/components/Time'
 import Panel from '@/components/Panel'
 import Button from '@/components/Button'
 
-// - [World Time API](http://worldtimeapi.org/) to set the time based on the visitor's IP adress. This API will also be used for additional data, like the day of the year shown in the expanded state.
-// - [IP Geolocation API](https://freegeoip.app/) to set the city and country underneath the time
-// - [Programming Quotes API](https://programming-quotes-api.herokuapp.com/) to generate random programming quotes.
-//     - If the Programming Quotes API doesn't work, [here's a good alternative quote API](https://github.com/lukePeavey/quotable) you can use instead. It's not programming specific, but it will do the trick.
-
 export interface TimeData {
   datetime: string
   timezone: string
@@ -32,6 +27,8 @@ function IndexPage() {
   const [time, setTime] = useState<TimeData>()
   const [geolocation, setGeolocation] = useState<GeolocationData>()
   const [comment, setComment] = useState<CommentData>()
+
+  const hours = time && new Date(time.datetime).getHours()
 
   useEffect(() => {
     // http://worldtimeapi.org/api/ip
@@ -58,7 +55,13 @@ function IndexPage() {
   }, [])
 
   return (
-    <div>
+    <div
+      className={`min-h-screen ${
+        !hours || (hours >= 5 && hours < 18)
+          ? 'bg-daytime-mobile md:bg-daytime-tablet xl:bg-daytime-desktop'
+          : 'bg-nighttime-mobile md:bg-nighttime-tablet xl:bg-nighttime-desktop'
+      } bg-no-repeat bg-cover`}
+    >
       <Seo title="Frontend Mentor: Clock app" />
       <main>
         <section>

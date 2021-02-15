@@ -5,8 +5,6 @@ interface CommentProps extends React.HTMLProps<HTMLDivElement> {
   author: string
 }
 
-// - Generate a new random programming quote whenever the refresh icon is clicked
-
 function Comment({ children, author, className = '', ...props }: CommentProps) {
   return (
     <div className={`${className}`} {...props}>
