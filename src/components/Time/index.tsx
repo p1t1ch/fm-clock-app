@@ -1,14 +1,15 @@
 import React from 'react'
 import { ReactComponent as Sun } from '@/icons/sun.svg'
 import { ReactComponent as Moon } from '@/icons/moon.svg'
-import { TimeData, GeolocationData } from '@/pages/index'
+import { TimeData, GeolocationData, TimeOfDay } from '@/pages/index'
 
 interface TimeProps extends React.HTMLProps<HTMLDivElement> {
   time?: TimeData
   geolocation?: GeolocationData
+  timeOfDay: TimeOfDay
 }
 
-function Time({ time, geolocation, className = '', ...props }: TimeProps) {
+function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimeProps) {
   if (!time || !geolocation) return null
 
   const date = new Date(time.datetime)
@@ -17,9 +18,10 @@ function Time({ time, geolocation, className = '', ...props }: TimeProps) {
 
   return (
     <div className={`${className}`} {...props}>
-      <div className="h4">
-        {hours >= 5 && hours < 18 ? <Sun /> : <Moon />} Good{' '}
-        {hours >= 5 && hours < 12 ? 'morning' : hours >= 12 && hours < 18 ? 'afternoon' : 'evening'}, it’s currently
+      <div className="h4 flex items-center">
+        {timeOfDay === 'morning' || timeOfDay === 'afternoon' ? <Sun className="icon" /> : <Moon className="icon" />}
+        <span>Good {timeOfDay}</span>
+        <span className="hidden md:block">, it’s currently</span>
       </div>
       <div>
         <time dateTime={time.datetime}>

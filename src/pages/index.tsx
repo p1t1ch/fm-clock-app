@@ -23,17 +23,23 @@ export interface CommentData {
   author: string
 }
 
+export type TimeOfDay = 'morning' | 'afternoon' | 'evening' | undefined
+
 function IndexPage() {
   const [time, setTime] = useState<TimeData>()
   const [geolocation, setGeolocation] = useState<GeolocationData>()
   const [comment, setComment] = useState<CommentData>()
 
-  const hours = time && new Date(time.datetime).getHours()
+  let timeOfDay: TimeOfDay
+  if (time) {
+    const hours = time && new Date(time.datetime).getHours()
+    timeOfDay = hours >= 5 && hours < 12 ? 'morning' : hours >= 12 && hours < 18 ? 'afternoon' : 'evening'
+  }
 
   useEffect(() => {
     // http://worldtimeapi.org/api/ip
     setTime({
-      datetime: '2021-02-15T16:26:10.208788+03:00',
+      datetime: '2021-02-15T18:26:10.208788+03:00',
       timezone: 'Europe/Moscow',
       day_of_week: 1,
       day_of_year: 46,
@@ -57,19 +63,23 @@ function IndexPage() {
   return (
     <div
       className={`min-h-screen ${
-        !hours || (hours >= 5 && hours < 18)
+        timeOfDay === 'morning' || timeOfDay === 'afternoon'
           ? 'bg-daytime-mobile md:bg-daytime-tablet xl:bg-daytime-desktop'
           : 'bg-nighttime-mobile md:bg-nighttime-tablet xl:bg-nighttime-desktop'
       } bg-no-repeat bg-cover`}
     >
       <Seo title="Frontend Mentor: Clock app" />
       <main>
-        <section>
-          {comment && <Comment author={comment.author}>{comment.text}</Comment>}
-          <Time time={time} geolocation={geolocation} />
-          <Button isActive />
+        <section className="grid place-items-center px-6 pt-8 pb-10 md:px-16 md:pt-20 md:pb-16 xl:pt-14 xl:pb-25">
+          <div className="max-w-container w-full flex flex-col justify-between">
+            {comment && <Comment author={comment.author}>{comment.text}</Comment>}
+            <div className="flex justify-between">
+              <Time time={time} geolocation={geolocation} timeOfDay={timeOfDay} />
+              <Button isActive />
+            </div>
+          </div>
         </section>
-        <Panel time={time} />
+        <Panel time={time} timeOfDay={timeOfDay} />
       </main>
     </div>
   )
