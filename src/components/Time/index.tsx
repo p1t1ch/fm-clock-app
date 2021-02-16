@@ -24,10 +24,10 @@ function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimePr
         <span className="hidden md:block">, it’s currently</span>
       </div>
       <div>
-        <time dateTime={time.datetime}>
+        <time dateTime={time.datetime} className="h1">
           {hours}:{minutes}
         </time>
-        <small>BTS</small>
+        <small className="suffix">BTS</small>
       </div>
       <div className="h3">
         In {geolocation.city}, {geolocation.country_name}

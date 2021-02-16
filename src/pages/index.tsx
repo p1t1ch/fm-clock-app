@@ -37,27 +37,52 @@ function IndexPage() {
   }
 
   useEffect(() => {
-    // http://worldtimeapi.org/api/ip
-    setTime({
-      datetime: '2021-02-15T18:26:10.208788+03:00',
-      timezone: 'Europe/Moscow',
-      day_of_week: 1,
-      day_of_year: 46,
-      week_number: 7,
-    })
-    // https://freegeoip.app/json/
-    setGeolocation({
-      country_name: 'Россия',
-      city: 'Москва',
-    })
-    // https://raw.githubusercontent.com/skolakoda/programming-quotes-api/master/backup/quotes.json
-    // json = json[Math.floor(Math.random() * (json.length + 1))];
-    // { text: json["en"], author: json["author"] }
-    setComment({
-      text:
-        'The science of operations, as derived from mathematics more especially, is a science of itself, and has its own abstract truth and value.',
-      author: 'Ada Lovelace',
-    })
+    const fetchData = async () => {
+      try {
+        const fetchTime = async () => {
+          try {
+            const res = await fetch('http://worldtimeapi.org/api/ip/')
+            const data = await res.json()
+            return data
+          } catch (e) {
+            console.error(e)
+          }
+        }
+
+        const fetchGeolocation = async () => {
+          try {
+            const res = await fetch('http://freegeoip.app/json/')
+            const data = await res.json()
+            return data
+          } catch (e) {
+            console.error(e)
+          }
+        }
+
+        const fetchComment = async () => {
+          try {
+            const res = await fetch(
+              'https://raw.githubusercontent.com/skolakoda/programming-quotes-api/master/backup/quotes.json'
+            )
+            let data = await res.json()
+            data = data[Math.floor(Math.random() * (data.length + 1))]
+            return { text: data.en, author: data.author }
+          } catch (e) {
+            console.error(e)
+          }
+        }
+
+        const responses = await Promise.all([fetchTime(), fetchGeolocation(), fetchComment()])
+
+        setTime(responses[0])
+        setGeolocation(responses[1])
+        setComment(responses[2])
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchData()
   }, [])
 
   return (
