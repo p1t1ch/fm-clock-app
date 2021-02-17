@@ -14,16 +14,24 @@ function Panel({ time, timeOfDay, className = '', ...props }: PanelProps) {
       } bg-opacity-75 blur ${className}`}
       {...props}
     >
-      <div className="max-w-container w-full">
-        <div className="h6">Current timezone</div>
-        <div className="h2">{time ? time.timezone : '–'}</div>
-        <div className="h6">Day of the year</div>
-        <div className="h2">{time ? time.day_of_year : '–'}</div>
-        <div className="h6">Day of the week</div>
-        <div className="h2">{time ? time.day_of_week : '–'}</div>
-        <div className="h6">Week number</div>
-        <div className="h2">{time ? time.week_number : '–'}</div>
-      </div>
+      <ul className="max-w-container w-full grid grid-cols-2 grid-rows-2 gap-10">
+        <li>
+          <div className="h6">Current timezone</div>
+          <div className="h2">{time ? time.timezone : '–'}</div>
+        </li>
+        <li>
+          <div className="h6">Day of the year</div>
+          <div className="h2">{time ? time.day_of_year : '–'}</div>
+        </li>
+        <li>
+          <div className="h6">Day of the week</div>
+          <div className="h2">{time ? time.day_of_week : '–'}</div>
+        </li>
+        <li>
+          <div className="h6">Week number</div>
+          <div className="h2">{time ? time.week_number : '–'}</div>
+        </li>
+      </ul>
     </section>
   )
 }

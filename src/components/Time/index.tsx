@@ -18,16 +18,16 @@ function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimePr
 
   return (
     <div className={`${className}`} {...props}>
-      <div className="h4 flex items-center">
+      <div className="h4 flex items-center mb-4">
         {timeOfDay === 'morning' || timeOfDay === 'afternoon' ? <Sun className="icon" /> : <Moon className="icon" />}
         <span>Good {timeOfDay}</span>
         <span className="hidden md:block">, it’s currently</span>
       </div>
-      <div>
+      <div className="mb-4">
         <time dateTime={time.datetime} className="h1">
           {hours}:{minutes}
         </time>
-        <small className="suffix">BTS</small>
+        <small className="suffix ml-3">BTS</small>
       </div>
       <div className="h3">
         In {geolocation.city}, {geolocation.country_name}

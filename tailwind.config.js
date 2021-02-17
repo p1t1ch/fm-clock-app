@@ -55,6 +55,9 @@ module.exports = {
       maxWidth: {
         container: '69.375rem',
       },
+      width: {
+        comment: '33.75rem',
+      },
       padding: {
         19: '4.75rem',
         25: '6.5rem',
