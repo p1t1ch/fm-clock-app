@@ -25,9 +25,9 @@ function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimePr
       </div>
       <div className="mb-4">
         <time dateTime={time.datetime} className="h1">
-          {hours}:{minutes}
+          {`0${hours}`.slice(-2)}:{`0${minutes}`.slice(-2)}
         </time>
-        <small className="suffix ml-3">BTS</small>
+        <small className="suffix ml-1 md:ml-3">BTS</small>
       </div>
       <div className="h3">
         In {geolocation.city}, {geolocation.country_name}

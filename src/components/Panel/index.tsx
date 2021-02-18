@@ -1,5 +1,6 @@
 import React from 'react'
 import { TimeData, TimeOfDay } from '@/pages/index'
+import PanelItem from './PanelItem'
 
 interface PanelProps extends React.HTMLProps<HTMLDivElement> {
   time?: TimeData
@@ -9,29 +10,25 @@ interface PanelProps extends React.HTMLProps<HTMLDivElement> {
 function Panel({ time, timeOfDay, className = '', ...props }: PanelProps) {
   return (
     <section
-      className={`grid place-items-center px-6 py-12 md:px-16 md:py-30 xl:py-19 ${
+      className={`grid place-items-center h-panel-mobile md:h-panel-tablet xl:h-panel-desktop px-6 md:px-16 ${
         timeOfDay === 'morning' || timeOfDay === 'afternoon' ? 'bg-white text-gray-dark' : 'bg-black'
       } bg-opacity-75 blur ${className}`}
       {...props}
     >
-      <ul className="max-w-container w-full grid grid-cols-2 grid-rows-2 gap-10">
-        <li>
-          <div className="h6">Current timezone</div>
-          <div className="h2">{time ? time.timezone : '–'}</div>
-        </li>
-        <li>
-          <div className="h6">Day of the year</div>
-          <div className="h2">{time ? time.day_of_year : '–'}</div>
-        </li>
-        <li>
-          <div className="h6">Day of the week</div>
-          <div className="h2">{time ? time.day_of_week : '–'}</div>
-        </li>
-        <li>
-          <div className="h6">Week number</div>
-          <div className="h2">{time ? time.week_number : '–'}</div>
-        </li>
-      </ul>
+      <div className="max-w-container w-full md:grid md:grid-cols-panel md:gap-x-10">
+        <div>
+          <PanelItem name="Current timezone">{time?.timezone}</PanelItem>
+          <PanelItem name="Day of the year">{time?.day_of_year}</PanelItem>
+        </div>
+        <div
+          className={`xl:pl-24 xl:border-l ${
+            timeOfDay === 'morning' || timeOfDay === 'afternoon' ? 'xl:border-gray-dark' : 'xl:border-white'
+          } xl:border-opacity-25`}
+        >
+          <PanelItem name="Day of the week">{time?.day_of_week}</PanelItem>
+          <PanelItem name="Week number">{time?.week_number}</PanelItem>
+        </div>
+      </div>
     </section>
   )
 }

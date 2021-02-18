@@ -17,7 +17,7 @@ function Comment({ children, author, setComment, className = '', ...props }: Com
 
   return (
     <div className={`flex items-start ${className}`} {...props}>
-      <div className="w-comment mr-4">
+      <div className="max-w-comment mr-4">
         <blockquote className="body mb-3">“{children}”</blockquote>
         <small className="h5">{author}</small>
       </div>

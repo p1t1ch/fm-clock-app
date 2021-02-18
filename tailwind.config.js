@@ -54,15 +54,29 @@ module.exports = {
     extend: {
       maxWidth: {
         container: '69.375rem',
-      },
-      width: {
         comment: '33.75rem',
       },
-      padding: {
-        19: '4.75rem',
-        25: '6.5rem',
-        30: '7.5rem',
+      width: {
+        29: '7.75rem',
       },
+      height: {
+        'panel-desktop': '25rem',
+        'panel-tablet': '27.5rem',
+        'panel-mobile': '16rem',
+      },
+      translate: {
+        '-panel-desktop': '-25rem',
+        '-panel-tablet': '-27.5rem',
+        '-panel-mobile': '-16rem',
+      },
+      gridTemplateColumns: {
+        panel: 'repeat(2, auto)',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      margin: ['odd'],
     },
   },
 }
