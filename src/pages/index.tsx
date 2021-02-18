@@ -5,6 +5,7 @@ import Time from '@/components/Time'
 import Panel from '@/components/Panel'
 import Button from '@/components/Button'
 import { fetchTime, fetchGeolocation, fetchComment } from '@/utils/api'
+import useInterval from '@/utils/useInterval'
 
 export interface TimeData {
   datetime: string
@@ -12,6 +13,7 @@ export interface TimeData {
   day_of_week: number
   day_of_year: number
   week_number: number
+  raw_offset: number
 }
 
 export interface GeolocationData {
@@ -51,6 +53,14 @@ function IndexPage() {
     }
     fetchData()
   }, [])
+
+  useInterval(() => {
+    if (!time) return
+    const date = new Date()
+    const localDate = new Date(date.getTime() - time.raw_offset)
+    const iso = localDate.toISOString()
+    setTime(time => ({ ...(time as TimeData), datetime: iso }))
+  }, 1000)
 
   return (
     <div

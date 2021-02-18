@@ -72,6 +72,9 @@ module.exports = {
       gridTemplateColumns: {
         panel: 'repeat(2, auto)',
       },
+      animation: {
+        time: 'pulse 2s linear infinite',
+      },
     },
   },
   variants: {
@@ -79,6 +82,7 @@ module.exports = {
       margin: ['odd'],
       textOpacity: ['focus-visible'],
       textColor: ['group-focus'],
+      animation: ['motion-safe'],
     },
   },
 }

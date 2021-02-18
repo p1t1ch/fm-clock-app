@@ -25,7 +25,9 @@ function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimePr
       </div>
       <div className="mb-4">
         <time dateTime={time.datetime} className="h1">
-          {`0${hours}`.slice(-2)}:{`0${minutes}`.slice(-2)}
+          <span>{`0${hours}`.slice(-2)}</span>
+          <span className="motion-safe:animate-time">:</span>
+          <span>{`0${minutes}`.slice(-2)}</span>
         </time>
         <small className="suffix ml-1 md:ml-3">BTS</small>
       </div>
