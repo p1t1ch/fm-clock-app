@@ -7,7 +7,7 @@ module.exports = {
       black: '#000',
       white: '#fff',
       'gray-dark': '#303030',
-      'gray-light': '#D8D8D8',
+      'gray-light': '#999',
     },
     fontFamily: {
       sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
@@ -77,6 +77,8 @@ module.exports = {
   variants: {
     extend: {
       margin: ['odd'],
+      textOpacity: ['focus-visible'],
+      textColor: ['group-focus'],
     },
   },
 }

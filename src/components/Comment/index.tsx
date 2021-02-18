@@ -21,7 +21,10 @@ function Comment({ children, author, setComment, className = '', ...props }: Com
         <blockquote className="body mb-3">“{children}”</blockquote>
         <small className="h5">{author}</small>
       </div>
-      <button onClick={handleClick} className="mt-2">
+      <button
+        onClick={handleClick}
+        className="mt-2 text-white text-opacity-50 hover:text-opacity-100 focus-visible:text-opacity-100 transition-colors"
+      >
         <Refresh title="Change quote" className="w-4 h-4" />
       </button>
     </div>

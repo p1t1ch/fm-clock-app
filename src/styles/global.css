@@ -10,6 +10,15 @@
   body {
     @apply text-body text-white bg-gray-dark;
   }
+
+  button:focus {
+    @apply outline-none;
+  }
+
+  svg,
+  svg circle {
+    fill: currentColor;
+  }
 }
 
 @layer utilities {
