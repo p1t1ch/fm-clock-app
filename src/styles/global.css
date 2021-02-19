@@ -15,8 +15,7 @@
     @apply outline-none;
   }
 
-  svg,
-  svg circle {
+  svg {
     fill: currentColor;
   }
 }
