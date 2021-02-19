@@ -21,7 +21,7 @@ export interface CommentData {
 
 export const fetchTime = async (): Promise<TimeData | undefined> => {
   try {
-    const res = await fetch('http://worldtimeapi.org/api/ip/')
+    const res = await fetch('https://worldtimeapi.org/api/ip/')
     const data = await res.json()
     return data
   } catch (e) {
@@ -31,7 +31,7 @@ export const fetchTime = async (): Promise<TimeData | undefined> => {
 
 export const fetchGeolocation = async (): Promise<GeolocationData | undefined> => {
   try {
-    const res = await fetch('http://freegeoip.app/json/')
+    const res = await fetch('https://freegeoip.app/json/')
     const data = await res.json()
     return data
   } catch (e) {
