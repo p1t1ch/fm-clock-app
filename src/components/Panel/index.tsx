@@ -15,6 +15,7 @@ function Panel({ time, timeOfDay, className = '', ...props }: PanelProps) {
       } bg-opacity-75 blur ${className}`}
       {...props}
     >
+      <h2 className="sr-only">Detailed time data</h2>
       <div className="max-w-container w-full md:grid md:grid-cols-panel md:gap-x-10">
         <div>
           <PanelItem name="Current timezone">{time.timezone}</PanelItem>
