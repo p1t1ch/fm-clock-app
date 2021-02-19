@@ -13,4 +13,5 @@
 
 For this challenge:
 
-1. Try out more "design system"-like Tailwind setup with components
+1. Tried out more "design system"-like Tailwind setup with components
+1. Worked with Fetch API
