@@ -27,7 +27,7 @@ function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimePr
           <span className="motion-safe:animate-time">:</span>
           <span>{`0${minutes}`.slice(-2)}</span>
         </time>
-        <small className="suffix ml-1 md:ml-3">BTS</small>
+        <small className="suffix ml-1 md:ml-3">{time.abbreviation}</small>
       </div>
       <div className="h3">
         In {geolocation.city}, {geolocation.country_name}

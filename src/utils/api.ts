@@ -5,6 +5,7 @@ export interface TimeData {
   day_of_year: number
   week_number: number
   raw_offset: number
+  abbreviation: string
 }
 
 export type TimeOfDay = 'morning' | 'afternoon' | 'evening'
