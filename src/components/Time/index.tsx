@@ -1,17 +1,15 @@
 import React from 'react'
 import { ReactComponent as Sun } from '@/icons/sun.svg'
 import { ReactComponent as Moon } from '@/icons/moon.svg'
-import { TimeData, GeolocationData, TimeOfDay } from '@/pages/index'
+import { TimeData, TimeOfDay, GeolocationData } from '@/utils/api'
 
 interface TimeProps extends React.HTMLProps<HTMLDivElement> {
-  time?: TimeData
-  geolocation?: GeolocationData
+  time: TimeData
+  geolocation: GeolocationData
   timeOfDay: TimeOfDay
 }
 
 function Time({ time, geolocation, timeOfDay, className = '', ...props }: TimeProps) {
-  if (!time || !geolocation) return null
-
   const date = new Date(time.datetime)
   const hours = date.getHours()
   const minutes = date.getMinutes()

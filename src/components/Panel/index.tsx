@@ -1,9 +1,9 @@
 import React from 'react'
-import { TimeData, TimeOfDay } from '@/pages/index'
 import PanelItem from './PanelItem'
+import { TimeData, TimeOfDay } from '@/utils/api'
 
 interface PanelProps extends React.HTMLProps<HTMLDivElement> {
-  time?: TimeData
+  time: TimeData
   timeOfDay: TimeOfDay
 }
 
@@ -17,16 +17,16 @@ function Panel({ time, timeOfDay, className = '', ...props }: PanelProps) {
     >
       <div className="max-w-container w-full md:grid md:grid-cols-panel md:gap-x-10">
         <div>
-          <PanelItem name="Current timezone">{time?.timezone}</PanelItem>
-          <PanelItem name="Day of the year">{time?.day_of_year}</PanelItem>
+          <PanelItem name="Current timezone">{time.timezone}</PanelItem>
+          <PanelItem name="Day of the year">{time.day_of_year}</PanelItem>
         </div>
         <div
           className={`xl:pl-24 xl:border-l ${
             timeOfDay === 'morning' || timeOfDay === 'afternoon' ? 'xl:border-gray-dark' : 'xl:border-white'
           } xl:border-opacity-25`}
         >
-          <PanelItem name="Day of the week">{time?.day_of_week}</PanelItem>
-          <PanelItem name="Week number">{time?.week_number}</PanelItem>
+          <PanelItem name="Day of the week">{time.day_of_week}</PanelItem>
+          <PanelItem name="Week number">{time.week_number}</PanelItem>
         </div>
       </div>
     </section>

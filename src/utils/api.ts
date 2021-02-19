@@ -1,4 +1,25 @@
-export const fetchTime = async () => {
+export interface TimeData {
+  datetime: string
+  timezone: string
+  day_of_week: number
+  day_of_year: number
+  week_number: number
+  raw_offset: number
+}
+
+export type TimeOfDay = 'morning' | 'afternoon' | 'evening'
+
+export interface GeolocationData {
+  country_name: string
+  city: string
+}
+
+export interface CommentData {
+  text: string
+  author: string
+}
+
+export const fetchTime = async (): Promise<TimeData | undefined> => {
   try {
     const res = await fetch('http://worldtimeapi.org/api/ip/')
     const data = await res.json()
@@ -8,7 +29,7 @@ export const fetchTime = async () => {
   }
 }
 
-export const fetchGeolocation = async () => {
+export const fetchGeolocation = async (): Promise<GeolocationData | undefined> => {
   try {
     const res = await fetch('http://freegeoip.app/json/')
     const data = await res.json()
@@ -18,7 +39,7 @@ export const fetchGeolocation = async () => {
   }
 }
 
-export const fetchComment = async () => {
+export const fetchComment = async (): Promise<CommentData | undefined> => {
   try {
     const res = await fetch(
       'https://raw.githubusercontent.com/skolakoda/programming-quotes-api/master/backup/quotes.json'

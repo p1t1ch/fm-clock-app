@@ -2,7 +2,7 @@ import React from 'react'
 
 interface PanelItemProps extends React.HTMLProps<HTMLDivElement> {
   name: string
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 function PanelItem({ name, children, className = '', ...props }: PanelItemProps) {
@@ -12,7 +12,7 @@ function PanelItem({ name, children, className = '', ...props }: PanelItemProps)
       {...props}
     >
       <div className="h6 md:mb-2">{name}</div>
-      <div className="h2">{children ?? '–'}</div>
+      <div className="h2">{children}</div>
     </div>
   )
 }

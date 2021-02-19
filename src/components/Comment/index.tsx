@@ -1,7 +1,6 @@
 import React from 'react'
-import { CommentData } from '@/pages/index'
 import { ReactComponent as Refresh } from '@/icons/refresh.svg'
-import { fetchComment } from '@/utils/api'
+import { fetchComment, CommentData } from '@/utils/api'
 
 interface CommentProps extends React.HTMLProps<HTMLDivElement> {
   children: string
